@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { ServiceSpendingService } from "../service-spending.service";
+import { ServiceSpendingService } from "./services/service-spending.service";
 import { Observable } from "rxjs";
-import { ServiceSpend } from "../service-spend";
+import { ServiceSpend } from "../../shared/models/service-spend";
 
 @Component({
   selector: "app-dashboard",
