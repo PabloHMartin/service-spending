@@ -4,9 +4,10 @@ import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { DashboardModule } from "./dashboard/dashboard.module";
+import { DashboardModule } from "./features/dashboard/dashboard.module";
 import { MatToolbarModule } from "@angular/material";
 import { HttpClientModule } from "@angular/common/http";
+import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,7 +17,8 @@ import { HttpClientModule } from "@angular/common/http";
     BrowserAnimationsModule,
     DashboardModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
