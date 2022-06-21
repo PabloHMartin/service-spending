@@ -1,0 +1,4 @@
+<div fxLayout="row wrap" fxLayoutGap="10px grid">
+  <app-dashboard-card *ngFor="let service of services" [name]="service.service" [spend]="service.spending"
+                      fxFlex="33"></app-dashboard-card>
+</div>

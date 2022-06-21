@@ -1,0 +1,7 @@
+<app-dashboard-header></app-dashboard-header>
+<ng-container *ngIf="spendingByService | async; let services; else loading">
+  <app-dashboard-body [services]="services"></app-dashboard-body>
+</ng-container>
+<ng-template #loading>
+  Loading...
+</ng-template>
