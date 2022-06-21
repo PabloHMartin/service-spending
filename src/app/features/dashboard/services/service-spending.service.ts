@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { ServiceSpendingApiService } from "./service-spending-api.service";
-import { ServiceSpend } from "./service-spend";
+import { ServiceSpend } from "../../../shared/models/service-spend";
 
 @Injectable({
   providedIn: "root"
