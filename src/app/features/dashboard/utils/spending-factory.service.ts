@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { ServiceSpendDto } from "src/app/shared/models/Service-spendDTO";
 import { ViewDto } from "src/app/shared/models/viewDTO";
-import { ServiceSpend } from "../models/service-spend";
 import { View } from "../models/View";
 
 @Injectable({
@@ -21,10 +20,18 @@ export class SpendingFactoryService {
     });
   }
 
-  mapServices(serviceDTO: ServiceSpendDto[], serviceIds: string[]): ServiceSpend[] {
-    let services = [];
-    const servicesMap = new Map<string, ServiceSpend>(
-      serviceDTO.map(service => [service.service, service] as [string, ServiceSpend])
+  buildSingleView(serviceDTO: ServiceSpendDto[], viewDTO: ViewDto): View {
+    return {
+      id: viewDTO.id,
+      name: viewDTO.name,
+      services: this.mapServices(serviceDTO, viewDTO.services)
+    };
+  }
+
+  mapServices(serviceDTO: ServiceSpendDto[], serviceIds: string[]): ServiceSpendDto[] {
+    let services: ServiceSpendDto[] = [];
+    const servicesMap = new Map<string, ServiceSpendDto>(
+      serviceDTO.map(service => [service.service, service] as [string, ServiceSpendDto])
     );
 
     serviceIds.forEach(id => {
@@ -32,8 +39,7 @@ export class SpendingFactoryService {
         services.push(servicesMap.get(id));
       }
     });
-
-    return services;
+    return services.reverse();
   }
 
   viewToViewDto(view: View): ViewDto {

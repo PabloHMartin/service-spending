@@ -1,3 +1,4 @@
 <mat-toolbar color="primary">
-  <span>{{ title }}</span>
+  <a *ngIf="navigateHome" [routerLink]="['/']"><mat-icon>arrow_back</mat-icon></a>
+  <div>{{ title }}</div>
 </mat-toolbar>

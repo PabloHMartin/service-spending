@@ -1,5 +1,47 @@
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 
 :host {
-  display: block;
+  height: 100%;
+  background-color: #fafafa;
+}
+.drawer-container {
+  width: 101vw;
+
+  &__sidenav {
+    width: 100vw !important;
+    background-color: #fafafa;
+    &__new-view {
+      width: 1366px;
+      margin: auto;
+      margin-top: 3rem;
+      &__top-bar {
+        display: flex;
+        justify-content: space-between;
+        p {
+          font-size: 32px;
+          font-weight: 300;
+        }
+        mat-icon {
+          cursor: pointer;
+          width: 32px;
+          height: 32px;
+          font-size: 32px;
+          color: grey;
+        }
+      }
+    }
+  }
+
+  &__sidenav-content {
+    width: 1200px;
+    margin: auto;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    &__views {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      column-gap: 0.5rem;
+      row-gap: 0.5rem;
+    }
+  }
 }

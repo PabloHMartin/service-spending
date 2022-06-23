@@ -1,0 +1,105 @@
+@import "../../../../../mixins";
+
+:host {
+  height: 100%;
+  background-color: #fafafa;
+}
+
+@include drag-drop();
+
+.drag-drop-container {
+  font-family: "Roboto";
+  display: flex;
+  justify-content: center;
+}
+
+.services-list {
+  width: 500px;
+  max-width: 100%;
+  border: solid 1px #ccc;
+  min-height: 60px;
+  display: block;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.services {
+  padding: 20px 10px;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  font-size: 14px;
+}
+
+.done {
+  margin-left: 30px;
+}
+
+.drawer-container {
+  width: 100vw;
+  height: 90vh;
+
+  &__sidenav {
+    width: 100vw !important;
+    &__new-view {
+      width: 1366px;
+      margin: auto;
+      margin-top: 3rem;
+      &__top-bar {
+        display: flex;
+        justify-content: space-between;
+        p {
+          font-size: 32px;
+          font-weight: 300;
+        }
+        mat-icon {
+          cursor: pointer;
+          width: 32px;
+          height: 32px;
+          font-size: 32px;
+          color: grey;
+        }
+      }
+    }
+  }
+
+  &__sidenav-content {
+    width: 1200px;
+    margin: auto;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    &__views {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      column-gap: 0.5rem;
+      row-gap: 0.5rem;
+    }
+  }
+  .close-icon {
+    position: absolute;
+    top: 1rem;
+    right: 3rem;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    font-size: 32px;
+    color: grey;
+  }
+}
+.services-view {
+  width: 1200px;
+  margin: auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  p {
+    font-size: 32px;
+    font-weight: 300;
+  }
+}

@@ -6,6 +6,7 @@ import { SpendingFactoryService } from "../utils/spending-factory.service";
 import { combineLatest } from "rxjs";
 import { map, tap } from "rxjs/operators";
 import { ServiceSpendDto } from "src/app/shared/models/Service-spendDTO";
+import { ViewDto } from "src/app/shared/models/viewDTO";
 
 @Injectable({
   providedIn: "root"
@@ -30,11 +31,19 @@ export class ServiceSpendingService {
     return this.services$;
   }
 
-  createView(view: View): void {
-    this.spendingDataApi.createView(this.spendingFactory.viewToViewDto(view));
+  createView(view: string): Observable<ViewDto> {
+    return this.spendingDataApi.createView(view);
   }
 
-  updateView(view: View): void {
-    this.spendingDataApi.updateView(this.spendingFactory.viewToViewDto(view));
+  updateView(view: View): Observable<ViewDto> {
+    return this.spendingDataApi.updateView(this.spendingFactory.viewToViewDto(view));
+  }
+
+  getViewById(id: number): Observable<View> {
+    const view$ = this.spendingDataApi.getViewById(id);
+
+    return combineLatest([this.services$, view$]).pipe(
+      map(([services, view]) => this.spendingFactory.buildSingleView(services, view))
+    );
   }
 }
