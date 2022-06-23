@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
-import { ServiceSpendingService } from "./services/service-spending.service";
-import { Observable } from "rxjs";
-import { ServiceSpendDto } from "src/app/shared/models/Service-spendDTO";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { MatSidenav } from "@angular/material";
+import { Store } from "@ngrx/store";
+import { DashboardState } from "./redux/reducers";
+import { DashboardActions } from "./redux/actions";
 
 @Component({
   selector: "app-dashboard",
@@ -9,11 +10,17 @@ import { ServiceSpendDto } from "src/app/shared/models/Service-spendDTO";
   styleUrls: ["./dashboard.component.scss"]
 })
 export class DashboardComponent implements OnInit {
-  public spendingByService: Observable<Array<ServiceSpendDto>>;
+  store$ = this.store.select("dashboard");
+  @ViewChild("drawer", { static: true }) drawer: MatSidenav;
 
-  constructor(private readonly spendingDataService: ServiceSpendingService) {}
+  constructor(private store: Store<{ dashboard: DashboardState }>) {}
 
   ngOnInit() {
-    this.spendingByService = this.spendingDataService.getAllServices();
+    this.store.dispatch(DashboardActions.getViews({ isLoading: true }));
+  }
+
+  recieveMessage(ev: { name: string }) {
+    this.store.dispatch(DashboardActions.createNewView({ viewName: ev.name, isLoading: true }));
+    this.drawer.close();
   }
 }

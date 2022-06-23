@@ -1,7 +1,27 @@
 <app-header title="Service Spending Dashboard"></app-header>
-<ng-container *ngIf="spendingByService | async; let services; else: loading">
-  <app-dashboard-body [services]="services"></app-dashboard-body>
-</ng-container>
-<ng-template #loading>
-  Loading...
-</ng-template>
+
+<mat-drawer-container class="drawer-container" hasBackdrop="false" autosize>
+  <mat-drawer #drawer class="drawer-container__sidenav" mode="over">
+    <div class="drawer-container__sidenav__new-view">
+      <div class="drawer-container__sidenav__new-view__top-bar">
+        <p>Enter the name of your new view</p>
+        <mat-icon (click)="drawer.toggle()">close</mat-icon>
+      </div>
+      <app-form-new-view (newItemEvent)="recieveMessage($event)"></app-form-new-view>
+    </div>
+  </mat-drawer>
+
+  <div class="drawer-container__sidenav-content">
+    <div class="drawer-container__sidenav-content__views">
+      <app-add-view-card (click)="drawer.toggle()"></app-add-view-card>
+      <ng-container *ngIf="store$ | async as store; else loading">
+        <ng-container *ngFor="let view of store.views">
+          <app-view-card [routerLink]="['/dashboard/', view.id]" title="{{ view.name }}"></app-view-card>
+        </ng-container>
+      </ng-container>
+    </div>
+    <ng-template #loading>
+      Loading...
+    </ng-template>
+  </div>
+</mat-drawer-container>

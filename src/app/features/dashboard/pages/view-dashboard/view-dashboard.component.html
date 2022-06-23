@@ -1,0 +1,59 @@
+<app-header title="View" navigateHome="true"></app-header>
+
+<mat-drawer-container class="drawer-container" hasBackdrop="false" autosize>
+  <mat-drawer #drawer class="drawer-container__sidenav" mode="over">
+    <div class="drag-drop-container" cdkDropListGroup>
+      <div class="pending">
+        <h3>Available services:</h3>
+
+        <div
+          cdkDropList
+          class="services-list drag-drop-list"
+          [cdkDropListData]="availableServices"
+          (cdkDropListDropped)="dropMultiList($event)"
+          cdkDropListSortingDisabled
+        >
+          <div class="services drag-drop-item" *ngFor="let service of availableServices" cdkDrag>
+            <div class="drop-placeholder" *cdkDragPlaceholder></div>
+            <div>
+              <div>{{ service.service }}</div>
+              <div>
+                <b>{{ service.spending }}</b>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="done">
+        <h3>View Services:</h3>
+
+        <div
+          cdkDropList
+          class="services-list drag-drop-list"
+          [cdkDropListData]="viewServices"
+          (cdkDropListDropped)="dropMultiList($event)"
+        >
+          <div class="services drag-drop-item" *ngFor="let viewService of viewServices" cdkDrag>
+            <div class="drop-placeholder" *cdkDragPlaceholder></div>
+            <div>
+              <div>{{ viewService.service }}</div>
+              <div>
+                <b>{{ viewService.spending }}</b>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <mat-icon class="close-icon" (click)="drawer.toggle()">close</mat-icon>
+  </mat-drawer>
+
+  <div class="services-view">
+    <button mat-raised-button color="primary" (click)="drawer.toggle()">Edit Services</button>
+    <div *ngIf="view">
+      <p>{{ view.name }}</p>
+      <app-dashboard-body [services]="view.services"></app-dashboard-body>
+    </div>
+  </div>
+</mat-drawer-container>
