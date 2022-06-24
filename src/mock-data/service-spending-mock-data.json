@@ -1,0 +1,33 @@
+[
+  {
+    "id": 1,
+    "name": "my view",
+    "services": [
+      "EARLY HELP AND SCHOOLS",
+      "CUSTOMERS & CORPORATE SERVICES",
+      "FINANCE SERVICES",
+      "PUBLIC HEALTH",
+      "PHYSICAL DIS & OLDER PEOPLE"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Second view",
+    "services": ["COLLECTION FUND", "FINANCE SERVICES", "PUBLIC HEALTH", "ECONOMY AND ENVIRONMENT"]
+  },
+  {
+    "id": 3,
+    "name": "Third view",
+    "services": ["FINANCE SERVICES", "ECONOMY AND ENVIRONMENT", "PUBLIC HEALTH"]
+  },
+  {
+    "id": 4,
+    "name": "Four",
+    "services": ["PHYSICAL DIS & OLDER PEOPLE", "FINANCE CONTROL", "COLLECTION FUND"]
+  },
+  {
+    "id": 5,
+    "name": "This is view number five",
+    "services": []
+  }
+]
