@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { DashboardActions } from "../actions";
-import { catchError, concatMap, map, tap } from "rxjs/operators";
+import { catchError, concatMap, exhaustMap, map, tap } from "rxjs/operators";
 import { of } from "rxjs";
 import { View } from "../../models/View";
 import { ServiceSpendingService } from "../../services/service-spending.service";
@@ -25,18 +25,22 @@ export class DashboardEffects {
   getViewById$ = createEffect(() =>
     this.actions$.pipe(
       ofType(DashboardActions.getViewById),
-      concatMap((action: { id: number }) => this.serviceSpending.getViewById(action.id)),
+      exhaustMap((action: { id: number }) =>
+        this.serviceSpending
+          .getViewById(action.id)
+          .pipe(map((view: View) => DashboardActions.setActiveView({ view: view })))
+      )
       // tap(console.log),
-      map((view: View) => DashboardActions.setActiveView({ view: view }))
     )
   );
 
   upateView$ = createEffect(() =>
     this.actions$.pipe(
       ofType(DashboardActions.updateServicesInView),
-      concatMap((action: { view: View }) => this.serviceSpending.updateView(action.view)),
+      exhaustMap((action: { view: View }) =>
+        this.serviceSpending.updateView(action.view).pipe(map(view => DashboardActions.getViewById({ id: view.id })))
+      )
       // tap(console.log),
-      map(view => DashboardActions.getViewById({ id: view.id }))
     )
   );
 
