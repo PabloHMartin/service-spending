@@ -39,7 +39,7 @@ export class SpendingFactoryService {
         services.push(servicesMap.get(id));
       }
     });
-    return services.reverse();
+    return services;
   }
 
   viewToViewDto(view: View): ViewDto {
