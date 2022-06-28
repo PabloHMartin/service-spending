@@ -24,7 +24,7 @@ export class SpendingFactoryService {
     return {
       id: viewDTO.id,
       name: viewDTO.name,
-      services: this.mapServices(serviceDTO, viewDTO.services)
+      services: this.mapServices(serviceDTO, viewDTO.services).reverse()
     };
   }
 
@@ -33,7 +33,7 @@ export class SpendingFactoryService {
     const servicesMap = new Map<string, ServiceSpendDto>(
       serviceDTO.map(service => [service.service, service] as [string, ServiceSpendDto])
     );
-
+    // ['COLLECTION FUND", {	"service": "COLLECTION FUND","spending": 933675.0}]
     serviceIds.forEach(id => {
       if (servicesMap.has(id)) {
         services.push(servicesMap.get(id));
@@ -43,7 +43,7 @@ export class SpendingFactoryService {
   }
 
   viewToViewDto(view: View): ViewDto {
-    let servicesDto = view.services.map(service => service.service);
+    let servicesDto = view.services.map(service => service.service).reverse();
     let viewDto: ViewDto = {
       id: view.id,
       name: view.name,
