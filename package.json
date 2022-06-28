@@ -8,6 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
     "format:fix": "prettier --config ./.prettierrc --write './src/**/*.ts'"
   },
   "private": true,
@@ -29,6 +31,7 @@
     "@ngrx/schematics": "^10.1.2",
     "@ngrx/store": "^10.1.2",
     "@ngrx/store-devtools": "^10.1.2",
+    "cypress": "^10.2.0",
     "d3": "^5.9.7",
     "lodash": "^4.17.21",
     "rxjs": "^6.4.0",
